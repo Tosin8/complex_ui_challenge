@@ -8,7 +8,7 @@ class CustomDrawer extends StatefulWidget {
 }
 
 class _CustomDrawerState extends State<CustomDrawer> {
-  final double maxSlide = 250.0;
+  final double maxSlide = 280.0;
   @override
   Widget build(BuildContext context) {
     var myDrawer = Container(color: Colors.blue);
