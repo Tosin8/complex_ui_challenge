@@ -7,7 +7,10 @@ class CustomDrawer extends StatefulWidget {
   State<CustomDrawer> createState() => _CustomDrawerState();
 }
 
-class _CustomDrawerState extends State<CustomDrawer> {
+class _CustomDrawerState extends State<CustomDrawer> with SingleTickerProviderStateMixin{
+
+  // Updating with AnimationController 
+  
   final double maxSlide = 280.0;
   @override
   Widget build(BuildContext context) {
