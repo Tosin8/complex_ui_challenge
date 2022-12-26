@@ -10,7 +10,7 @@ class CustomDrawer extends StatefulWidget {
 class _CustomDrawerState extends State<CustomDrawer>
     with SingleTickerProviderStateMixin {
   // Updating with AnimationController
-  AnimationController animationController;
+  late AnimationController animationController;
 
   @override
   void initState() {
@@ -32,19 +32,31 @@ class _CustomDrawerState extends State<CustomDrawer>
   Widget build(BuildContext context) {
     var myDrawer = Container(color: Colors.blue);
     var myContent = Container(color: Colors.yellow);
-    return Stack(children: [
-      myDrawer,
+    return GestureDetector(
+      onTap: toggle,
+      child: AnimatedBuilder(
+          animation: animationController,
+          builder: (context, _) {
+            double slide = maxSlide * animationController.value;
+            double scale = 1 - (animationController.value * 0.3);
 
-      // Transform.scale(scale: 0.5, child: myContent), -used the primary,basic transform scale.
+            return Stack(
+              children: [
+                myDrawer,
 
-      // Using Matrix transform for explict.
-      Transform(
-        transform: Matrix4.identity()
-          ..translate(maxSlide)
-          ..scale(0.5),
-        alignment: Alignment.centerLeft,
-        child: myContent,
-      ),
-    ]);
+                // Transform.scale(scale: 0.5, child: myContent), -used the primary,basic transform scale.
+
+                // Using Matrix transform for explict.
+                Transform(
+                  transform: Matrix4.identity()
+                    ..translate(slide)
+                    ..scale(scale),
+                  alignment: Alignment.centerLeft,
+                  child: myContent,
+                ),
+              ],
+            );
+          }),
+    );
   }
 }
