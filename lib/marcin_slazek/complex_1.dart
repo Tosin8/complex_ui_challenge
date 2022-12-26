@@ -7,10 +7,26 @@ class CustomDrawer extends StatefulWidget {
   State<CustomDrawer> createState() => _CustomDrawerState();
 }
 
-class _CustomDrawerState extends State<CustomDrawer> with SingleTickerProviderStateMixin{
+class _CustomDrawerState extends State<CustomDrawer>
+    with SingleTickerProviderStateMixin {
+  // Updating with AnimationController
+  AnimationController animationController;
 
-  // Updating with AnimationController 
-  
+  @override
+  void initState() {
+    super.initState();
+    animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 250),
+    );
+
+    // animationController.forward();
+  }
+
+  void toggle() => animationController.isDismissed
+      ? animationController.forward()
+      : animationController.reverse();
+
   final double maxSlide = 280.0;
   @override
   Widget build(BuildContext context) {
