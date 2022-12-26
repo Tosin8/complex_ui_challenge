@@ -27,16 +27,35 @@ class _CustomDrawerState extends State<CustomDrawer>
       ? animationController.forward()
       : animationController.reverse();
 
+  void _onDragStart(DragStartDetails details) {
+    bool isDragOpenFromLeft = animationController.isDismissed &&
+        details.globalPosition.dx < minDragStartEdge;
+    bool isDragCloseFromRight = animationController.isCompleted &&
+        details.globalPosition.dx > maxDragStartEdge;
+
+    _canBeDragged = isDragOpenFromLeft || isDragCloseFromRight;
+  }
+
+  void _onDragUpdate(DragUpdateDetails details) {
+    if (_canBeDragged) {
+      double delta = details.primaryDelta / maxSlide;
+      animationController.value += delta;
+    }
+  }
+
   final double maxSlide = 280.0;
   @override
   Widget build(BuildContext context) {
     var myDrawer = Container(color: Colors.blue);
     var myContent = Container(color: Colors.yellow);
     return GestureDetector(
+      onHorizontalDragStart: _onDragStart,
+      onHorizontalDragUpdate: _onDragUpdate,
+      onHorizontalDragEnd: _onDragEnd,
       onTap: toggle,
       child: AnimatedBuilder(
           animation: animationController,
-          builder: (context, _) {
+          builder: (context, child) {
             double slide = maxSlide * animationController.value;
             double scale = 1 - (animationController.value * 0.3);
 
