@@ -43,6 +43,13 @@ class _CustomDrawerState extends State<CustomDrawer>
     }
   }
 
+void _onDragEnd(DragEndDetails details) {
+  if(_animationController.isDismissed || _animationController.isCompleted) return; 
+}
+
+if(details.velocity.pixelsPerSecond.dx.abs() >= 365.0
+
+
   final double maxSlide = 280.0;
   @override
   Widget build(BuildContext context) {
