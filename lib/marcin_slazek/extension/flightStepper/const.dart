@@ -54,13 +54,13 @@ class Line extends StatelessWidget {
   }
 }
 
-class Page extends StatefulWidget {
+class FPage extends StatefulWidget {
   final int number;
   final String question;
   final List<String> answers;
   final VoidCallback onOptionSelected;
 
-  const Page(
+  const FPage(
       {super.key,
       required this.number,
       required this.question,
@@ -68,10 +68,10 @@ class Page extends StatefulWidget {
       required this.onOptionSelected});
 
   @override
-  State<Page> createState() => _PageState();
+  State<FPage> createState() => _FPageState();
 }
 
-class _PageState extends State<Page> {
+class _FPageState extends State<FPage> {
   @override
   Widget build(BuildContext context) {
     return Column(
