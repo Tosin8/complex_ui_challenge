@@ -18,10 +18,24 @@ class _FlipState extends State<Flip> with SingleTickerProviderStateMixin {
       vsync: this,
       duration: const Duration(milliseconds: 250),
     );
+
+    animationController.forward();
   }
 
+  void toggle() => animationController.isDismissed
+      ? animationController.forward()
+      : animationController.reverse();
+
+  final double maxSlide = 280.0;
   @override
   Widget build(BuildContext context) {
-    return Container();
+    var myDrawer = Container(color: Colors.blue);
+    var myContent = Container(color: Colors.yellow);
+    return GestureDetector(
+      onTap: toggle,
+      child: AnimatedBuilder(animation: animationController, builder: (context, (context, child) {
+        double slide = maxSlide * animationController.value; 
+      }),
+    );
   }
 }
