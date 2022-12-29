@@ -21,10 +21,10 @@ class _FlightStepperState extends State<FlightStepper> {
               colors: [Colors.purple, Color(0xFF4A148C)])),
       child: SafeArea(
           child: Stack(
-        children: const [
-          ArrowIcons(),
-          Plane(),
-          Line(),
+        children: [
+          const ArrowIcons(),
+          const Plane(),
+          const Line(),
           Page(),
         ],
       )),
