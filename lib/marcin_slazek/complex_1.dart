@@ -20,7 +20,7 @@ class _CustomDrawerState extends State<CustomDrawer>
       duration: const Duration(milliseconds: 250),
     );
 
-    // animationController.forward();
+    animationController.forward();
   }
 
   void toggle() => animationController.isDismissed
@@ -36,27 +36,25 @@ class _CustomDrawerState extends State<CustomDrawer>
     _canBeDragged = isDragOpenFromLeft || isDragCloseFromRight;
   }
 
-  void _onDragUpdate(DragUpdateDetails details) {
-    if (_canBeDragged) {
-      double delta = details.primaryDelta / maxSlide;
-      animationController.value += delta;
-    }
-  }
+   void _onDragUpdate(DragUpdateDetails details) {
+     if (_canBeDragged) {
+       double delta = details.primaryDelta / maxSlide;
+       animationController.value += delta;
+     }
+   }
 
-void _onDragEnd(DragEndDetails details) {
-  if(_animationController.isDismissed || _animationController.isCompleted) return; 
-}
+ void _onDragEnd(DragEndDetails details) {
+   if(_animationController.isDismissed || _animationController.isCompleted) return;
+ }
 
-if(details.velocity.pixelsPerSecond.dx.abs() >= 365.0 ) {
-  double visualVelocity = details.velocity.pixelsPerSecond.dx / MediaQuery.of(context).size.width; 
+ if(details.velocity.pixelsPerSecond.dx.abs() >= 365.0 ) {
+   double visualVelocity = details.velocity.pixelsPerSecond.dx / MediaQuery.of(context).size.width;
 
-  _animationController.fling(velocity: visualVelocity); 
-} else if ( _animationController.value < 0.5) {
-  close();
-} else {
-  open(); 
-}
-
+  _animationController.fling(velocity: visualVelocity);
+ } else if ( _animationController.value < 0.5) {
+   close();
+ } else {  open();
+ }
 
   final double maxSlide = 280.0;
   @override
