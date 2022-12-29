@@ -74,6 +74,47 @@ class Page extends StatefulWidget {
 class _PageState extends State<Page> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(height: 32),
+        StepNumber(number: widget.number),
+        StepQuestion(question: widget.question),
+        const Spacer(),
+        ...widget.answers.map((String answer) {
+          return OptionItem(
+            name: answer,
+            onTap: widget.onOptionSelected,
+          );
+        }),
+        const SizedBox(height: 64),
+      ],
+    );
+  }
+}
+
+class OptionItem extends StatefulWidget {
+  const OptionItem({super.key});
+
+  @override
+  State<OptionItem> createState() => _OptionItemState();
+}
+
+class _OptionItemState extends State<OptionItem> {
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+        onTap: widget.onTap,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          child: Row(children: [
+            const SizedBox(width: 26),
+            Dot(),
+            const SizedBox(width: 26),
+            Expanded(
+              child: Text(widget.name),
+            )
+          ]),
+        ));
   }
 }
