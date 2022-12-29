@@ -47,7 +47,15 @@ void _onDragEnd(DragEndDetails details) {
   if(_animationController.isDismissed || _animationController.isCompleted) return; 
 }
 
-if(details.velocity.pixelsPerSecond.dx.abs() >= 365.0
+if(details.velocity.pixelsPerSecond.dx.abs() >= 365.0 ) {
+  double visualVelocity = details.velocity.pixelsPerSecond.dx / MediaQuery.of(context).size.width; 
+
+  _animationController.fling(velocity: visualVelocity); 
+} else if ( _animationController.value < 0.5) {
+  close();
+} else {
+  open(); 
+}
 
 
   final double maxSlide = 280.0;
