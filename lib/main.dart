@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'marcin_slazek/complex_1.dart';
+import 'marcin_slazek/3d_flip.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const CustomDrawer(),
+      home: const Flip(),
     );
   }
 }
