@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math' as math;
 
 class Flip extends StatefulWidget {
   const Flip({super.key});
@@ -12,7 +13,6 @@ class _FlipState extends State<Flip> with SingleTickerProviderStateMixin {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     animationController = AnimationController(
       vsync: this,
@@ -39,7 +39,7 @@ class _FlipState extends State<Flip> with SingleTickerProviderStateMixin {
             double slide = maxSlide * animationController.value;
             double scale = 1 - (animationController.value * 0.3);
 
-            dynamic math;
+            // dynamic math;
             return Stack(children: [
               Transform.translate(
                 offset: Offset(maxSlide * (animationController.value - 1), 0),
