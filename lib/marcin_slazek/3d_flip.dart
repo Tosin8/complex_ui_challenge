@@ -39,7 +39,6 @@ class _FlipState extends State<Flip> with SingleTickerProviderStateMixin {
             double slide = maxSlide * animationController.value;
             double scale = 1 - (animationController.value * 0.3);
 
-            // dynamic math;
             return Stack(children: [
               Transform.translate(
                 offset: Offset(maxSlide * (animationController.value - 1), 0),
