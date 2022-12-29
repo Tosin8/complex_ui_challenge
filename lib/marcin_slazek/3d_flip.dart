@@ -40,11 +40,15 @@ class _FlipState extends State<Flip> with SingleTickerProviderStateMixin {
             double scale = 1 - (animationController.value * 0.3);
 
             return Stack(children: [
-              Transform(
-                  transform: Matrix4.identity()
-                    ..rotateY(-math.pi / 2 * animationController.value),
-                  alignment: Alignment.centerLeft,
-                  child: myDrawer),
+              Transform.translate(
+                offset: Offset(maxSlide * animationController.value, 0),
+                child: Transform(
+                    transform: Matrix4.identity()
+                      ..setEntry(3, 2, 0.001)
+                      ..rotateY(math.pi / 2 * (1 - animationController.value)),
+                    alignment: Alignment.centerLeft,
+                    child: myDrawer),
+              ),
               myContent
             ]);
           }),
