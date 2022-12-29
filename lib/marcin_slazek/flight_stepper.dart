@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'extension/const.dart';
+import 'extension/flightStepper/const.dart';
 
 class FlightStepper extends StatefulWidget {
   const FlightStepper({super.key});
