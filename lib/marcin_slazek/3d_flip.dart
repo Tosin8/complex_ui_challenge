@@ -33,9 +33,14 @@ class _FlipState extends State<Flip> with SingleTickerProviderStateMixin {
     var myContent = Container(color: Colors.yellow);
     return GestureDetector(
       onTap: toggle,
-      child: AnimatedBuilder(animation: animationController, builder: (context, (context, child) {
-        double slide = maxSlide * animationController.value; 
-      }),
+      child: AnimatedBuilder(
+          animation: animationController,
+          builder: (context, child) {
+            double slide = maxSlide * animationController.value;
+            double scale = 1 - (animationController.value * 0.3);
+
+            return Stack(children: [myDrawer, myContent]);
+          }),
     );
   }
 }
